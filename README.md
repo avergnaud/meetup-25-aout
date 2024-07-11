@@ -1,3 +1,40 @@
+
+Ce repo illustre la conférence ci-dessous avec un exemple concret :
+
+[https://www.youtube.com/watch?v=v_RzIPS72E0](https://www.youtube.com/watch?v=v_RzIPS72E0)
+
+# Exercice
+
+Trouver la vulnérabilité dans le code source de ce repo, sans s'aider d'un outil...
+
+# Utilisation de semgrep
+
+[https://semgrep.dev/docs/getting-started/quickstart](https://semgrep.dev/docs/getting-started/quickstart)
+
+```
+podman container run --rm semgrep/semgrep semgrep --version
+podman container run -it semgrep/semgrep semgrep login
+```
+-> retourne le token `YOUR_TOKEN`.
+```
+podman container  run -e SEMGREP_APP_TOKEN=YOUR_TOKEN --rm -v "${PWD}:/src" semgrep/semgrep semgrep ci
+```
+
+Résultat sur [https://semgrep.dev](https://semgrep.dev) :
+
+![démo semgrep](./docs/demo_semgrep.gif?raw=true)
+
+## Comparaison de semgrep avec d'autres outils
+
+| outil | vulnérabilité détectée | niveau de détail |
+| --- | --- | --- |
+| sonarcloud standard | ❌ [démo](./docs/demo_sonarcloud_standard.webm) | ❌ |
+| dependabot GitHub | ✅ | bof [démo](https://github.com/avergnaud/meetup-25-aout/security/dependabot/1) |
+| OWASP dependency check [démo exec](./docs/odc_exec.webm) | ✅ | bof [démo résultat](./docs/odc_resultat.webm) |
+| semgrep | ✅ | ✅ donne la ligne |
+
+# L'application (Next.JS) qui sert d'exemple...
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
